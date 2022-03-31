@@ -26,24 +26,38 @@ cd $Path_Acrobat
 echo "Patching Acrobat.dll"
 Copy-Item -Path Acrobat.dll -Destination Acrobat.dll.bak
 $bInput_Acrobat = Get-Content -Path Acrobat.dll -Encoding Byte -Raw
-$Offset_Acrobat = $bInput_Acrobat.Length-$bOriginal_Acrobat.Length
-$i = 0
-for(; $i -le $Offset_Acrobat; $i++)
+$Offset_Acrobat = $bInput_Acrobat.Length - $bOriginal_Acrobat.Length
+$sum_find_Acrobat = 0
+for ($j = 0; $j -lt $bOriginal_Acrobat.Length; $j++)
 {
-    $j = 0
-    for (; $j -lt $bOriginal_Acrobat.Length; $j++)
+    $sum_find_Acrobat = $sum_find_Acrobat + $bOriginal_Acrobat[$j]
+}
+$sum_input_Acrobat = 0
+for ($j = 0; $j -lt $bOriginal_Acrobat.Length; $j++)
+{
+    $sum_input_Acrobat = $sum_input_Acrobat + $bInput_Acrobat[$j]
+}
+$i = 0
+for(; $i -lt $Offset_Acrobat; $i++)
+{
+    if ($sum_input_Acrobat -eq $sum_find_Acrobat)
     {
-        if ($bInput_Acrobat[$i+$j] -ne $bOriginal_Acrobat[$j])
+        $j = 0
+        for (; $j -lt $bOriginal_Acrobat.Length; $j++)
+        {
+            if ($bInput_Acrobat[$i+$j] -ne $bOriginal_Acrobat[$j])
+            {
+                break
+            }
+        }
+        if ($j -eq $bOriginal_Acrobat.Length)
         {
             break
         }
     }
-    if ($j -eq $bOriginal_Acrobat.Length)
-    {
-        break
-    }
+    $sum_input_Acrobat = $sum_input_Acrobat - $bInput_Acrobat[$i] + $bInput_Acrobat[$i+$bOriginal_Acrobat.Length]
 }
-if ($i -le $Offset_Acrobat)
+if ($i -lt $Offset_Acrobat)
 {
     for ($j = 0; $j -lt $bOriginal_Acrobat.Length; $j++)
     {
@@ -60,24 +74,38 @@ else
 echo "Patching acrodistdll.dll"
 Copy-Item -Path acrodistdll.dll -Destination acrodistdll.dll.bak
 $bInput_acrodistdll = Get-Content -Path acrodistdll.dll -Encoding Byte -Raw
-$Offset_acrodistdll = $bInput_acrodistdll.Length-$bOriginal_acrodistdll.Length
-$i = 0
-for(; $i -le $Offset_acrodistdll; $i++)
+$Offset_acrodistdll = $bInput_acrodistdll.Length - $bOriginal_acrodistdll.Length
+$sum_find_acrodistdll = 0
+for ($j = 0; $j -lt $bOriginal_acrodistdll.Length; $j++)
 {
-    $j = 0
-    for (; $j -lt $bOriginal_acrodistdll.Length; $j++)
+    $sum_find_acrodistdll = $sum_find_acrodistdll + $bOriginal_acrodistdll[$j]
+}
+$sum_input_acrodistdll = 0
+for ($j = 0; $j -lt $bOriginal_acrodistdll.Length; $j++)
+{
+    $sum_input_acrodistdll = $sum_input_acrodistdll + $bInput_acrodistdll[$j]
+}
+$i = 0
+for(; $i -lt $Offset_acrodistdll; $i++)
+{
+    if ($sum_input_acrodistdll -eq $sum_find_acrodistdll)
     {
-        if ($bInput_acrodistdll[$i+$j] -ne $bOriginal_acrodistdll[$j])
+        $j = 0
+        for (; $j -lt $bOriginal_acrodistdll.Length; $j++)
+        {
+            if ($bInput_acrodistdll[$i+$j] -ne $bOriginal_acrodistdll[$j])
+            {
+                break
+            }
+        }
+        if ($j -eq $bOriginal_acrodistdll.Length)
         {
             break
         }
     }
-    if ($j -eq $bOriginal_acrodistdll.Length)
-    {
-        break
-    }
+    $sum_input_acrodistdll = $sum_input_acrodistdll - $bInput_acrodistdll[$i] + $bInput_acrodistdll[$i+$bOriginal_acrodistdll.Length]
 }
-if ($i -le $Offset_acrodistdll)
+if ($i -lt $Offset_acrodistdll)
 {
     for ($j = 0; $j -lt $bOriginal_acrodistdll.Length; $j++)
     {
@@ -92,3 +120,4 @@ else
 }
 
 pause
+exit 0
