@@ -28,13 +28,10 @@ Copy-Item -Path Acrobat.dll -Destination Acrobat.dll.bak
 $bInput_Acrobat = Get-Content -Path Acrobat.dll -Encoding Byte -Raw
 $Offset_Acrobat = $bInput_Acrobat.Length - $bOriginal_Acrobat.Length
 $sum_find_Acrobat = 0
-for ($j = 0; $j -lt $bOriginal_Acrobat.Length; $j++)
-{
-    $sum_find_Acrobat = $sum_find_Acrobat + $bOriginal_Acrobat[$j]
-}
 $sum_input_Acrobat = 0
 for ($j = 0; $j -lt $bOriginal_Acrobat.Length; $j++)
 {
+    $sum_find_Acrobat = $sum_find_Acrobat + $bOriginal_Acrobat[$j]
     $sum_input_Acrobat = $sum_input_Acrobat + $bInput_Acrobat[$j]
 }
 $i = 0
@@ -76,13 +73,10 @@ Copy-Item -Path acrodistdll.dll -Destination acrodistdll.dll.bak
 $bInput_acrodistdll = Get-Content -Path acrodistdll.dll -Encoding Byte -Raw
 $Offset_acrodistdll = $bInput_acrodistdll.Length - $bOriginal_acrodistdll.Length
 $sum_find_acrodistdll = 0
-for ($j = 0; $j -lt $bOriginal_acrodistdll.Length; $j++)
-{
-    $sum_find_acrodistdll = $sum_find_acrodistdll + $bOriginal_acrodistdll[$j]
-}
 $sum_input_acrodistdll = 0
 for ($j = 0; $j -lt $bOriginal_acrodistdll.Length; $j++)
 {
+    $sum_find_acrodistdll = $sum_find_acrodistdll + $bOriginal_acrodistdll[$j]
     $sum_input_acrodistdll = $sum_input_acrodistdll + $bInput_acrodistdll[$j]
 }
 $i = 0
