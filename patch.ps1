@@ -35,7 +35,7 @@ for ($j = 0; $j -lt $bOriginal_Acrobat.Length; $j++)
     $sum_input_Acrobat = $sum_input_Acrobat + $bInput_Acrobat[$j]
 }
 $i = 0
-for(; $i -lt $Offset_Acrobat; $i++)
+for (; $i -lt $Offset_Acrobat; $i++)
 {
     if ($sum_input_Acrobat -eq $sum_find_Acrobat)
     {
@@ -80,7 +80,7 @@ for ($j = 0; $j -lt $bOriginal_acrodistdll.Length; $j++)
     $sum_input_acrodistdll = $sum_input_acrodistdll + $bInput_acrodistdll[$j]
 }
 $i = 0
-for(; $i -lt $Offset_acrodistdll; $i++)
+for (; $i -lt $Offset_acrodistdll; $i++)
 {
     if ($sum_input_acrodistdll -eq $sum_find_acrodistdll)
     {
